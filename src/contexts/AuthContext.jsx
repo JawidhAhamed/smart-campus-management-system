@@ -8,9 +8,9 @@ export function AuthProvider({ children }) {
   const navigate = useNavigate();
 
   const defaultUser = {
-    email: "hamthy05@gmail.com",
+    email: "admin@gmail.com",
     password: "123456",
-    username: "Hamthy",
+    username: "admin",
     role: "admin", 
   };
 
