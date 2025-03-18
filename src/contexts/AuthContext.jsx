@@ -11,7 +11,7 @@ export function AuthProvider({ children }) {
     email: "hamthy05@gmail.com",
     password: "123456",
     username: "Hamthy",
-    role: "lecturer", 
+    role: "admin", 
   };
 
   const register = async (email, password, username, role) => {
