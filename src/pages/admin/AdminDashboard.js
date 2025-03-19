@@ -1,11 +1,13 @@
 import NoticeBoard from "../../components/NoticeBoard";
 import Calendar from "../../components/Calendar";
 import Cards from "../../data/Cards";
+import { useAuth } from "../../contexts/AuthContext";
 
-export default function AdminDashboard({ user }) {
+export default function AdminDashboard() {
   const data = Cards;
 
-  console.log("User object:", user);
+  const { user } = useAuth();
+  console.log(user);
 
   return (
     <div className="space-y-8">
