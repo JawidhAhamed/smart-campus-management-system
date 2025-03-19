@@ -1,14 +1,18 @@
 import NoticeBoard from "../components/NoticeBoard";
 import Calendar from "../components/Calendar";
 import React, { useState } from "react";
+import { useAuth } from "../contexts/AuthContext";
 
-export default function Dashboard({ user }) {
+export default function Dashboard() {
   const [courses, setCourses] = useState([
     { year: "2025", title: "Software Development Practise" },
     { year: "2024", title: "Database Management Systems" },
     { year: "2023", title: "Web Development" },
     { year: "2022", title: "Data Structures and Algorithms" },
   ]);
+
+  const { user } = useAuth();
+  console.log(user);
 
   return (
     <div className="space-y-8">
@@ -25,7 +29,7 @@ export default function Dashboard({ user }) {
       {/* Welcome Section */}
       <div className="bg-[#3F51B5] text-white p-8 rounded-xl">
         <h1 className="text-2xl font-semibold">
-          Welcome Back, Mr {user?.name}
+          Welcome Back, Mr {user?.username}
         </h1>
       </div>
 

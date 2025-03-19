@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { FaChevronLeft, FaChevronRight, FaClock } from "react-icons/fa";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useAuth } from "../../contexts/AuthContext";
 
 const classSchedules = [
   { time: "09:00 - 09:45", class: "Class V, B", type: "past" },
@@ -12,7 +13,7 @@ const classSchedules = [
   { time: "01:30 - 02:15", class: "Class V, B", type: "upcoming" },
 ];
 
-export default function LecturerDashboard({ user }) {
+export default function LecturerDashboard() {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const handlePrevDay = () => {
@@ -22,6 +23,9 @@ export default function LecturerDashboard({ user }) {
   const handleNextDay = () => {
     setSelectedDate((prev) => new Date(prev.setDate(prev.getDate() + 1)));
   };
+
+  const { user } = useAuth();
+  console.log(user);
 
   return (
     <div className="space-y-8">
@@ -38,7 +42,7 @@ export default function LecturerDashboard({ user }) {
       {/* Welcome Section */}
       <div className="bg-[#3F51B5] text-white p-8 rounded-xl">
         <h1 className="text-2xl font-semibold">
-          Welcome Back, Mr {user?.username || "Lecturer"}
+          Welcome Back, Mr {user?.username }
         </h1>
       </div>
 

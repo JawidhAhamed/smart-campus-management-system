@@ -112,7 +112,7 @@ export default function TopBar() {
   };
 
   return (
-    <div className="bg-white fixed top-0 w-screen pl-32 lg:pl-4 lg:w-10/12 dark:bg-gray-800 border-b dark:border-gray-700 px-4 py-3 flex items-center gap-4 z-50">
+    <div className="bg-white fixed top-0 w-full pl-32 lg:pl-4 lg:w-10/12 dark:bg-gray-800 border-b dark:border-gray-700 px-4 py-3 flex items-center gap-4 z-50">
       {/* Search */}
       <div className="hidden md:flex w-1/3 relative">
         <input

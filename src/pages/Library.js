@@ -66,9 +66,6 @@ const Library = () => {
         <h1 className="text-3xl font-bold dark:text-white mb-4 md:mb-0">
           Library
         </h1>
-        <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-          BUTTON
-        </button>
       </div>
 
       {/* Filter Row */}
