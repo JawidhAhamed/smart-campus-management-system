@@ -9,7 +9,6 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { login, isAuthenticated, user } = useAuth();
-  const { isDark } = useTheme();
 
   const handleSubmit = async (e) => {
     e.preventDefault();

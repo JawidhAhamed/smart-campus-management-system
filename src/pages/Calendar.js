@@ -1,31 +1,47 @@
 import React, { useState } from "react";
 
 const Calendar = () => {
-  const [currentMonth, setCurrentMonth] = useState("March 2025");
+  const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+
   const months = [
-    "January 2025",
-    "February 2025",
-    "March 2025",
-    "April 2025",
-    "May 2025",
-    "June 2025",
-    "July 2025",
-    "August 2025",
-    "September 2025",
-    "October 2025",
-    "November 2025",
-    "December 2025",
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
 
   const handlePrevMonth = () => {
-    const index = months.indexOf(currentMonth);
-    if (index > 0) setCurrentMonth(months[index - 1]);
+    if (currentMonth === 0) {
+      setCurrentMonth(11);
+      setCurrentYear(currentYear - 1);
+    } else {
+      setCurrentMonth(currentMonth - 1);
+    }
   };
 
   const handleNextMonth = () => {
-    const index = months.indexOf(currentMonth);
-    if (index < months.length - 1) setCurrentMonth(months[index + 1]);
+    if (currentMonth === 11) {
+      setCurrentMonth(0);
+      setCurrentYear(currentYear + 1);
+    } else {
+      setCurrentMonth(currentMonth + 1);
+    }
   };
+
+  const getDaysInMonth = (month, year) => {
+    return new Date(year, month + 1, 0).getDate();
+  };
+
+  const daysInMonth = getDaysInMonth(currentMonth, currentYear);
 
   return (
     <div className="space-y-8">
@@ -52,11 +68,15 @@ const Calendar = () => {
       </div>
       <div className="flex justify-between items-center mb-2">
         <button onClick={handlePrevMonth} className="text-blue-500">
-          {months[months.indexOf(currentMonth) - 1] || ""}
+          {months[currentMonth === 0 ? 11 : currentMonth - 1]}{" "}
+          {currentMonth === 0 ? currentYear - 1 : currentYear}
         </button>
-        <h3 className="text-xl font-bold">{currentMonth}</h3>
+        <h3 className="text-xl font-bold">
+          {months[currentMonth]} {currentYear}
+        </h3>
         <button onClick={handleNextMonth} className="text-blue-500">
-          {months[months.indexOf(currentMonth) + 1] || ""}
+          {months[currentMonth === 11 ? 0 : currentMonth + 1]}{" "}
+          {currentMonth === 11 ? currentYear + 1 : currentYear}
         </button>
       </div>
       <div className="grid grid-cols-7 bg-gray-100 text-center p-2 font-semibold">
@@ -67,7 +87,7 @@ const Calendar = () => {
         ))}
       </div>
       <div className="grid grid-cols-7 text-center border border-gray-300">
-        {[...Array(31)].map((_, index) => (
+        {[...Array(daysInMonth)].map((_, index) => (
           <div key={index} className="p-4 border border-gray-200">
             {index + 1}
           </div>
