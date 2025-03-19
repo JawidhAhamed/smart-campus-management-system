@@ -61,7 +61,7 @@ export default function LecturerHome({ user }) {
       {/* Welcome Section */}
       <div className="bg-[#3F51B5] text-white p-8 rounded-xl">
         <h1 className="text-2xl font-semibold">
-          Welcome Back, Mr {user?.name}
+          Welcome Back, Mr {user?.username || "Lecturer"}
         </h1>
       </div>
 

@@ -2,66 +2,62 @@ import { useState } from "react";
 import { ChevronDown, Search, Download } from "lucide-react";
 
 const Library = () => {
-  const [category, setCategory] = useState("Past Papers");
-  const [department, setDepartment] = useState("Information Technology");
-  const [semester, setSemester] = useState("Semester 1");
+  const [category, setCategory] = useState("All");
+  const [department, setDepartment] = useState("All");
+  const [semester, setSemester] = useState("All");
 
-  const categories = ["Past Papers", "Tutorials", "E-Books", "Magazines"];
+  const categories = [
+    "All",
+    "Past Papers",
+    "Tutorials",
+    "E-Books",
+    "Magazines",
+  ];
   const departments = [
+    "All",
     "Information Technology",
     "Multimedia Technology",
     "Management",
     "Civil Engineering",
   ];
-  const semesters = ["Semester 1", "Semester 2", "Semester 3", "Semester 4"];
+  const semesters = [
+    "All",
+    "Semester 1",
+    "Semester 2",
+    "Semester 3",
+    "Semester 4",
+  ];
 
   const libraryItems = [
     {
       title: "Software Development Practise",
       lastUpdated: "1 month ago",
       fileType: "pdf",
+      category: "Past Papers",
+      department: "Information Technology",
+      semester: "Semester 1",
     },
     {
-      title: "Software Development Practise",
-      lastUpdated: "1 month ago",
+      title: "Advanced Multimedia",
+      lastUpdated: "2 months ago",
       fileType: "pdf",
+      category: "Tutorials",
+      department: "Multimedia Technology",
+      semester: "Semester 2",
     },
-    {
-      title: "Software Development Practise",
-      lastUpdated: "1 month ago",
-      fileType: "pdf",
-    },
-    {
-      title: "Software Development Practise",
-      lastUpdated: "1 month ago",
-      fileType: "pdf",
-    },
-    {
-      title: "Software Development Practise",
-      lastUpdated: "1 month ago",
-      fileType: "pdf",
-    },
-    {
-      title: "Software Development Practise",
-      lastUpdated: "1 month ago",
-      fileType: "pdf",
-    },
-    {
-      title: "Software Development Practise",
-      lastUpdated: "1 month ago",
-      fileType: "pdf",
-    },
-    {
-      title: "Software Development Practise",
-      lastUpdated: "1 month ago",
-      fileType: "pdf",
-    },
-    {
-      title: "Software Development Practise",
-      lastUpdated: "1 month ago",
-      fileType: "pdf",
-    },
+    // Add more items as needed
   ];
+
+  const handleFilter = () => {
+    return libraryItems.filter(
+      (item) =>
+        (category === "All" || item.category === category) &&
+        (department === "All" || item.department === department) &&
+        (semester === "All" || item.semester === semester)
+    );
+  };
+
+  const filteredItems = handleFilter();
 
   return (
     <div className="space-y-8 ">
@@ -93,14 +89,17 @@ const Library = () => {
           onSelect={(item) => setSemester(item)}
         />
 
-        <button className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600">
+        <button
+          className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600"
+          onClick={handleFilter}
+        >
           <Search size={18} className="mr-2" /> Filter
         </button>
       </div>
 
       {/* Library Items Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {libraryItems.map((item, index) => (
+        {filteredItems.map((item, index) => (
           <div
             key={index}
             className="p-4 border rounded-lg shadow-md hover:shadow-lg transition"

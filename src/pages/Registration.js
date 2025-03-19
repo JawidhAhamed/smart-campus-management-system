@@ -51,7 +51,7 @@ export default function Registration({ setUser }) {
         </div>
 
         {/* Right Side - Registration Form */}
-        <div className="w-full md:w-1/2 p-8">
+        <div className="w-full md:w-1/2 p-8 ">
           <h2 className="text-2xl font-semibold text-gray-800 text-center flex items-center justify-center gap-2">
             <FaUser className="text-xl" />
             Create an Account

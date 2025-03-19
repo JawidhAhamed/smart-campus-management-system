@@ -24,6 +24,7 @@ import Resources from "./pages/admin/Resources";
 import LecturerLayout from "./components/LecturerLayout";
 import LecturerHome from "./pages/Lecturer/LecturerHome";
 import LecturerDashboard from "./pages/Lecturer/LecturerDashboard";
+import LecturerExamResults from "./pages/Lecturer/LecturerExamsResults";
 
 function PrivateRoute({ children, role }) {
   const { isAuthenticated, user } = useAuth();
@@ -115,7 +116,7 @@ function App() {
               <Route path="/lecturer/calendar" element={<Calendar />} />
               <Route
                 path="/lecturer/exams-results"
-                element={<ExamsResults />}
+                element={<LecturerExamResults />}
               />
               <Route
                 path="/lecturer/private-files"
