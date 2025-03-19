@@ -8,10 +8,10 @@ export function AuthProvider({ children }) {
   const navigate = useNavigate();
 
   const defaultUser = {
-    email: "hamthy05@gmail.com",
+    email: "admin@gmail.com",
     password: "123456",
-    username: "Hamthy",
-    role: "admin", 
+    username: "admin",
+    role: "admin",
   };
 
   const register = async (email, password, username, role) => {
@@ -26,7 +26,11 @@ export function AuthProvider({ children }) {
   const login = async (email, password) => {
     // Replace this with your actual login logic
     if (email === defaultUser.email && password === defaultUser.password) {
-      setUser({ email, username: defaultUser.name, role: defaultUser.role });
+      setUser({
+        email,
+        username: defaultUser.username,
+        role: defaultUser.role,
+      });
       navigate("/");
     } else {
       throw new Error("Invalid credentials");
