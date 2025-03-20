@@ -14,11 +14,41 @@ export default function Registration({ setUser }) {
   const [error, setError] = useState("");
   const { register, isAuthenticated, user } = useAuth();
   const { isDark } = useTheme();
+  const [errors, setErrors] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  // Email Validation Function
+  const isValidEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let newErrors = { username: "", email: "", password: "", confirmPassword: "" };
+
+    if (username.length < 3) {
+      newErrors.username = "Username must be at least 3 characters.";
+    }
+
+    if (!isValidEmail(email)) {
+      newErrors.email = "Invalid email format.";
+    }
+
+    if (password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters.";
+    }
+
     if (password !== confirmPassword) {
-      setError("Passwords do not match");
+      newErrors.confirmPassword = "Passwords do not match.";
+    }
+
+    setErrors(newErrors);
+
+    if (Object.values(newErrors).some((err) => err)) {
       return;
     }
     try {
@@ -84,6 +114,7 @@ export default function Registration({ setUser }) {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
+              {errors.username && <p className="text-red-500 text-xs mt-1">{errors.username}</p>}
             </div>
 
             {/* Email Field */}
@@ -102,6 +133,7 @@ export default function Registration({ setUser }) {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
+              {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
             </div>
 
             {/* Password Field */}
@@ -120,6 +152,7 @@ export default function Registration({ setUser }) {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+              {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password}</p>}
             </div>
 
             {/* Confirm Password Field */}
@@ -137,7 +170,9 @@ export default function Registration({ setUser }) {
                 className="w-full px-4 py-2 mt-1 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
+
               />
+              {errors.confirmPassword && <p className="text-red-500 text-xs mt-1">{errors.confirmPassword}</p>}
             </div>
 
             {/* Role Selection */}
