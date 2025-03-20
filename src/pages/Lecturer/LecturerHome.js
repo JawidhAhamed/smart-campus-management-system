@@ -1,5 +1,6 @@
 import { Bell } from "lucide-react";
 import { useState } from "react";
+import { useAuth } from "../../contexts/AuthContext";
 
 const announcements = [
   {
@@ -29,7 +30,10 @@ const announcements = [
   },
 ];
 
-export default function LecturerHome({ user }) {
+export default function LecturerHome() {
+  const { user } = useAuth();
+  console.log(user);
+
   const [announcementList, setAnnouncementList] = useState(announcements);
 
   const handleEdit = (id) => {

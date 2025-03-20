@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { AiOutlinePlus } from "react-icons/ai";
+import { Edit } from "lucide-react";
 
 const LecturerExamResults = () => {
   const [semester, setSemester] = useState("All");
@@ -212,12 +213,12 @@ const LecturerExamResults = () => {
                 <td className="p-2">{item.attempt}</td>
                 <td className="p-2">{item.grade}</td>
                 <td className="p-2 text-green-500">{item.status}</td>
-                <td className="p-2">
+                <td className="p-2 flex justify-center">
                   <button
                     onClick={() => handleEditClick(item)}
-                    className="bg-yellow-500 text-white px-4 py-2 rounded"
+                    className=" text-black p-2 rounded "
                   >
-                    Edit
+                    <Edit size={20} />
                   </button>
                 </td>
               </tr>
@@ -235,7 +236,7 @@ const LecturerExamResults = () => {
       {/* Add & Edit Modals */}
       {showAddModal && (
         <Modal title="Add Result" onClose={() => setShowAddModal(false)}>
-          <form className="h-[500px] overflow-y-auto">
+          <form className="h-[500px] overflow-y-auto ">
             <div className="mb-2">
               <label className="block text-sm font-medium mb-2">Student</label>
               <input
@@ -448,7 +449,7 @@ const LecturerExamResults = () => {
 // Modal Component
 const Modal = ({ title, children, onClose }) => {
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+    <div className="fixed -inset-56 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
         <h2 className="text-lg font-bold mb-4">{title}</h2>
         {children}

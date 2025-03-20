@@ -36,7 +36,7 @@ export default function Sidebar() {
 
       {/* Sidebar */}
       <div
-        className={`fixed top-16 w-screen  left-0 max-h-full bg-white dark:bg-gray-800 shadow-xl transition-transform duration-300 ease-in-out z-40
+        className={`fixed top-16 w-full  left-0 max-h-full bg-white dark:bg-gray-800 shadow-xl transition-transform duration-300 ease-in-out z-40
           ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"} 
           lg:translate-x-0 lg:w-2/12 lg:static`}
       >

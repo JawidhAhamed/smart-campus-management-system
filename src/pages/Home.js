@@ -1,4 +1,5 @@
 import { Bell } from "lucide-react";
+import { useAuth } from "../contexts/AuthContext";
 
 const announcements = [
   {
@@ -28,7 +29,10 @@ const announcements = [
   },
 ];
 
-export default function Home({ user }) {
+export default function Home() {
+  const { user } = useAuth();
+  console.log(user);
+
   return (
     <div className="space-y-8">
       {/* Page Header */}
@@ -42,7 +46,7 @@ export default function Home({ user }) {
       {/* Welcome Section */}
       <div className="bg-[#3F51B5] text-white p-8 rounded-xl">
         <h1 className="text-2xl font-semibold">
-          Welcome Back, Mr {user?.name}
+          Welcome Back, Mr {user?.username}
         </h1>
       </div>
 
