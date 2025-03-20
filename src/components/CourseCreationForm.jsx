@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import AboutCourse from "./AboutCourse"; // Import the AboutCourse component
-import CourseDetails from "./CourseDetails"; // Import the CourseDetails component
+import AboutCourse from "./AboutCourse";
+import CourseDetails from "./CourseDetails"; 
 
 const CourseCreationForm = ({ onClose }) => {
   const [lessonName, setLessonName] = useState("");
@@ -9,7 +9,7 @@ const CourseCreationForm = ({ onClose }) => {
   const [courseTime, setCourseTime] = useState("");
   const [totalLessons, setTotalLessons] = useState("");
   const [thumbnailImage, setThumbnailImage] = useState(null);
-  const [currentTab, setCurrentTab] = useState("courseDetails"); // State to manage the current tab
+  const [currentTab, setCurrentTab] = useState("courseDetails"); 
 
   const handleLessonNameChange = (e) => {
     setLessonName(e.target.value);
@@ -68,11 +68,15 @@ const CourseCreationForm = ({ onClose }) => {
   };
 
   const handleContinue = () => {
-    setCurrentTab("aboutCourse"); // Switch to the About Course tab
+    if (!lessonName || !courseCategory || !courseLevel || !courseTime || !totalLessons) {
+      alert("Please fill in all required fields before proceeding.");
+      return;
+    }
+    setCurrentTab("aboutCourse");
   };
 
   const handleBack = () => {
-    setCurrentTab("courseDetails"); // Switch back to the Course Details tab
+    setCurrentTab("courseDetails"); 
   };
 
   return (
