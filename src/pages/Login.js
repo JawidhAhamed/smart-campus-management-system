@@ -7,17 +7,39 @@ import { useTheme } from "../contexts/ThemeContext";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const [error, setError] = useState("");
   const { login, isAuthenticated, user } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    let valid = true;
+
+    if (!email) {
+      setEmailError("Email is required");
+      valid = false;
+    } else {
+      setEmailError("");
+    }
+
+    if (!password) {
+      setPasswordError("Password is required");
+      valid = false;
+    } else {
+      setPasswordError("");
+    }
+
+    if (!valid) return;
+
     try {
       await login(email, password);
     } catch (err) {
-      setError(err.message || "Invalid credentials");
+      setPasswordError(err.message || "Invalid credentials");
     }
   };
+
 
   if (isAuthenticated) {
     if (user.role === "admin") {
@@ -72,6 +94,7 @@ export default function Login() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
+               {emailError && <p className="text-red-500 text-sm mt-1">{emailError}</p>}
             </div>
 
             {/* Password Field */}
@@ -90,6 +113,7 @@ export default function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+               {passwordError && <p className="text-red-500 text-sm mt-1">{passwordError}</p>}
             </div>
 
             {/* Remember Me & Forgot Password */}
