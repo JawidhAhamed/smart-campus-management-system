@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 
-const AboutCourse = ({ onBack }) => {
-  const [description, setDescription] = useState(
-    "Build beautifully designed web and mobile projects for your customers using modern tools used by top companies in 2024. Includes 100+ assets and premium design templates that you can keep and use to customize for all your future projects. Learn to design for all types of devices using Figma and other tools used by some of the top designers in the world. Get hired as a Designer or become a freelancer that can work from anywhere and for anyone. Designers are in high demand!"
-  );
-  const [attachments, setAttachments] = useState([
-    { name: "Introduction of web & mobile Design.pdf", size: "25 mb" },
-    { name: "Introduction of web & mobile Design.pdf", size: "25 mb" },
-  ]);
+const AboutCourse = ({
+  description,
+  attachments,
+  handleDescriptionChange,
+  handleFileChange,
+  handleDeleteAttachment,
+  onBack,
+  onContinue,
+}) => {
   const [dragActive, setDragActive] = useState(false);
-
-  const handleDescriptionChange = (e) => {
-    setDescription(e.target.value);
-  };
 
   const handleDrag = (e) => {
     e.preventDefault();
@@ -30,38 +27,8 @@ const AboutCourse = ({ onBack }) => {
     setDragActive(false);
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const files = e.dataTransfer.files;
-      handleFiles(files);
+      handleFileChange({ target: { files } });
     }
-  };
-
-  const handleFileChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      const files = e.target.files;
-      handleFiles(files);
-    }
-  };
-
-  const handleFiles = (files) => {
-    const newAttachments = [...attachments];
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      if (file.size <= 100 * 1024 * 1024) {
-        // 100MB max size
-        newAttachments.push({
-          name: file.name,
-          size: `${(file.size / (1024 * 1024)).toFixed(2)} mb`,
-        });
-      } else {
-        alert(`File ${file.name} exceeds 100MB limit.`);
-      }
-    }
-    setAttachments(newAttachments);
-  };
-
-  const handleDeleteAttachment = (index) => {
-    const newAttachments = [...attachments];
-    newAttachments.splice(index, 1);
-    setAttachments(newAttachments);
   };
 
   return (
@@ -171,7 +138,10 @@ const AboutCourse = ({ onBack }) => {
             >
               Back
             </button>
-            <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+            <button
+              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              onClick={onContinue}
+            >
               Continue
             </button>
           </div>
