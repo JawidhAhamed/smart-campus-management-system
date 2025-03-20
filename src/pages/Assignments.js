@@ -72,9 +72,7 @@ export default function Assignments() {
         <h1 className="text-3xl font-bold dark:text-white mb-4 md:mb-0">
           Assignments
         </h1>
-        <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 dark:bg-blue-800 dark:hover:bg-blue-900">
-          BUTTON
-        </button>
+      
       </div>
 
       <div className="mb-4 flex flex-col md:flex-row items-center">

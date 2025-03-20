@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CourseCreationForm from "../../components/CourseCreationForm";
-const courses = [
+
+const initialCourses = [
   {
     id: 1,
     title: "Bsc(Hons) in Computer Science",
@@ -57,16 +58,9 @@ const courses = [
     university: "Kingston University",
     description: "Degree Programme offered by Kingston university is a.......",
   },
-  {
-    id: 9,
-    title: "Bsc(Hons) in Computer Science",
-    subtitle: "Software Engineering Top-Up",
-    university: "Kingston University",
-    description: "Degree Programme offered by Kingston university is a.......",
-  },
 ];
 
-const CourseCard = ({ course }) => {
+const CourseCard = ({ course, onDelete, onEdit }) => {
   return (
     <div className="bg-white shadow-md rounded-lg p-4">
       <div className="flex items-center justify-between">
@@ -85,10 +79,16 @@ const CourseCard = ({ course }) => {
       <p className="text-sm text-gray-500">{course.university}</p>
       <p className="text-sm text-gray-600 mt-1">{course.description}</p>
       <div className="flex justify-end mt-3 space-x-2">
-        <button className="px-4 py-1 border border-gray-400 rounded-lg text-gray-600">
+        <button
+          className="px-4 py-1 border border-gray-400 rounded-lg text-gray-600"
+          onClick={() => onDelete(course.id)}
+        >
           Delete
         </button>
-        <button className="px-4 py-1 bg-gray-900 text-white rounded-lg">
+        <button
+          className="px-4 py-1 bg-gray-900 text-white rounded-lg"
+          onClick={() => onEdit(course)}
+        >
           Edit
         </button>
       </div>
@@ -97,7 +97,33 @@ const CourseCard = ({ course }) => {
 };
 
 const CourseManagement = () => {
+  const [courses, setCourses] = useState(initialCourses);
   const [isCreating, setIsCreating] = useState(false);
+  const [editingCourse, setEditingCourse] = useState(null);
+
+  const handleDelete = (courseId) => {
+    setCourses(courses.filter((course) => course.id !== courseId));
+  };
+
+  const handleAddCourse = (newCourse) => {
+    setCourses([...courses, newCourse]);
+    setIsCreating(false);
+  };
+
+  const handleEditCourse = (updatedCourse) => {
+    setCourses(
+      courses.map((course) =>
+        course.id === updatedCourse.id ? updatedCourse : course
+      )
+    );
+    setEditingCourse(null);
+    setIsCreating(false);
+  };
+
+  const handleEdit = (course) => {
+    setEditingCourse(course);
+    setIsCreating(true);
+  };
 
   return (
     <div className="space-y-8">
@@ -121,12 +147,19 @@ const CourseManagement = () => {
       {isCreating ? (
         <CourseCreationForm
           onClose={() => setIsCreating(false)}
-          showHeader={false}
+          onAddCourse={handleAddCourse}
+          onEditCourse={handleEditCourse}
+          editingCourse={editingCourse}
         />
       ) : (
         <div className="flex flex-wrap gap-4">
           {courses.map((course) => (
-            <CourseCard key={course.id} course={course} />
+            <CourseCard
+              key={course.id}
+              course={course}
+              onDelete={handleDelete}
+              onEdit={handleEdit}
+            />
           ))}
         </div>
       )}

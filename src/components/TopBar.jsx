@@ -112,7 +112,7 @@ export default function TopBar() {
   };
 
   return (
-    <div className="bg-white fixed top-0 w-full pl-32 lg:pl-4 lg:w-10/12 dark:bg-gray-800 border-b dark:border-gray-700 px-4 py-3 flex items-center gap-4 z-50">
+    <div className="bg-white fixed top-0 w-screen pl-32 lg:pl-4 lg:w-10/12 dark:bg-gray-800 border-b dark:border-gray-700 px-4 py-3 flex items-center gap-4 z-50">
       {/* Search */}
       <div className="hidden md:flex w-1/3 relative">
         <input
@@ -145,12 +145,14 @@ export default function TopBar() {
       {/* Right Section */}
       <div className="flex items-center gap-4 ml-auto">
         {/* Academic Year */}
-        <div className="hidden md:flex justify-center rounded-lg border border-gray-400 p-2 items-center gap-2 text-sm ml-auto">
-          <span className="text-gray-500 dark:text-gray-400">
-            Academic Year:
-          </span>
-          <span className="font-medium dark:text-white">2024/2025</span>
-        </div>
+        {user?.role === "student" && (
+          <div className="hidden md:flex justify-center rounded-lg border border-gray-400 p-2 items-center gap-2 text-sm ml-auto">
+            <span className="text-gray-500 dark:text-gray-400">
+              Academic Year:
+            </span>
+            <span className="font-medium dark:text-white">2024/2025</span>
+          </div>
+        )}
 
         {/* Action Buttons */}
         <div className="flex items-center gap-4 ml-auto">
