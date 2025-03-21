@@ -29,8 +29,30 @@ const Announcements = () => {
     },
   ]);
 
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [newAnnouncement, setNewAnnouncement] = useState({
+    title: "",
+    date: "",
+  });
+
   const handleAddNew = () => {
-    console.log("Add New Announcement clicked");
+    setShowAddModal(true);
+  };
+
+  const handleSaveAnnouncement = () => {
+    const newId = announcements.length + 1;
+    const newAnn = { ...newAnnouncement, id: newId };
+    setAnnouncements([...announcements, newAnn]);
+    setShowAddModal(false);
+    setNewAnnouncement({ title: "", date: "" });
+
+    // NoticeBoard.jsx file-ila add panrathu
+    const noticeBoardNotices =
+      JSON.parse(localStorage.getItem("notices")) || [];
+    localStorage.setItem(
+      "notices",
+      JSON.stringify([...noticeBoardNotices, newAnn])
+    );
   };
 
   return (
@@ -83,6 +105,60 @@ const Announcements = () => {
           </li>
         ))}
       </ul>
+
+      {showAddModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
+            <h2 className="text-lg font-bold mb-4">Add New Announcement</h2>
+            <form>
+              <div className="mb-2">
+                <label className="block text-sm font-medium mb-2">Title</label>
+                <input
+                  type="text"
+                  className="border p-2 rounded w-full"
+                  value={newAnnouncement.title}
+                  onChange={(e) =>
+                    setNewAnnouncement({
+                      ...newAnnouncement,
+                      title: e.target.value,
+                    })
+                  }
+                />
+              </div>
+              <div className="mb-2">
+                <label className="block text-sm font-medium mb-2">Date</label>
+                <input
+                  type="date"
+                  className="border p-2 rounded w-full"
+                  value={newAnnouncement.date}
+                  onChange={(e) =>
+                    setNewAnnouncement({
+                      ...newAnnouncement,
+                      date: e.target.value,
+                    })
+                  }
+                />
+              </div>
+              <div className="flex justify-end flex-row gap-2">
+                <button
+                  type="button"
+                  onClick={handleSaveAnnouncement}
+                  className="bg-blue-600 text-white px-4 py-2 rounded"
+                >
+                  Save
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowAddModal(false)}
+                  className="bg-gray-300 px-4 py-2 rounded"
+                >
+                  Close
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

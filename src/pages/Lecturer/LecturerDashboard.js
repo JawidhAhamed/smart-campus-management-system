@@ -7,10 +7,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useAuth } from "../../contexts/AuthContext";
 
 const classSchedules = [
-  { time: "09:00 - 09:45", class: "Class V, B", type: "past" },
-  { time: "09:00 - 09:45", class: "Class IV, C", type: "past" },
-  { time: "11:30 - 12:15", class: "Class V, B", type: "upcoming" },
-  { time: "01:30 - 02:15", class: "Class V, B", type: "upcoming" },
+  { time: "09:00 - 09:45", class: "SDP, E83", type: "past" },
+  { time: "11:00 - 12:45", class: "DE, E84", type: "past" },
+  { time: "01:30 - 02:15", class: "DBMS, E4", type: "upcoming" },
+  { time: "03:00 - 05:15", class: "Cyber Security, E6", type: "upcoming" },
 ];
 
 export default function LecturerDashboard() {
@@ -34,9 +34,7 @@ export default function LecturerDashboard() {
         <h1 className="text-3xl font-bold dark:text-white">
           Lecturer Dashboard
         </h1>
-        <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-          BUTTON
-        </button>
+      
       </div>
 
       {/* Welcome Section */}

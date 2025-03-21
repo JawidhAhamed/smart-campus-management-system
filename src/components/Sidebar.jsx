@@ -8,6 +8,7 @@ import {
   GraduationCap,
   Folder,
   Menu,
+  Book,
   X,
 } from "lucide-react";
 
@@ -17,6 +18,7 @@ const navItems = [
   { path: "/assignments", name: "ASSIGNMENTS", icon: BookOpen },
   { path: "/calendar", name: "CALENDAR", icon: Calendar },
   { path: "/exams-results", name: "EXAMS & RESULTS", icon: GraduationCap },
+  { path: "/courses", name: "COURSES", icon: Book },
   { path: "/private-files", name: "PRIVATE FILES", icon: Folder },
   { path: "/library", name: "LIBRARY", icon: BookOpen },
 ];

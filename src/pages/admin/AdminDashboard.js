@@ -14,9 +14,7 @@ export default function AdminDashboard() {
       {/* Page Header */}
       <div className="flex items-center pt-14 justify-between">
         <h1 className="text-3xl font-bold dark:text-white">Admin Dashboard</h1>
-        <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-          BUTTON
-        </button>
+       
       </div>
 
       {/* Welcome Section */}

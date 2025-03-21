@@ -60,7 +60,7 @@ export default function PrivateFiles() {
         <h1 className="text-3xl font-bold dark:text-white mb-4 md:mb-0">
           Private Files
         </h1>
-      
+       
       </div>
 
       <div className="text-sm mb-4 text-right">

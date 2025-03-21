@@ -21,7 +21,7 @@ export default function Dashboard() {
         <h1 className="text-3xl font-bold dark:text-white">
           Student Dashboard
         </h1>
-        
+       
       </div>
 
       {/* Welcome Section */}

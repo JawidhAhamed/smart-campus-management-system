@@ -16,15 +16,15 @@ import Library from "./pages/Library";
 import AdminLayout from "./components/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import UserManagement from "./pages/admin/UserManagement";
-import CourseManagement from "./pages/admin/CourseManagement";
 import Payments from "./pages/admin/Payments";
 import Announcements from "./pages/admin/Announcements";
-import AdminExamResults from "./pages/admin/AdminExamResults";
 import Resources from "./pages/admin/Resources";
 import LecturerLayout from "./components/LecturerLayout";
 import LecturerHome from "./pages/Lecturer/LecturerHome";
 import LecturerDashboard from "./pages/Lecturer/LecturerDashboard";
-import LecturerExamResults from "./pages/Lecturer/LecturerExamsResults";
+import LecturerLibrary from "./pages/Lecturer/LecturerLibrary";
+import ExamResults from "./pages/ExamsResults";
+import Courses from "./pages/Courses";
 
 function PrivateRoute({ children, role }) {
   const { isAuthenticated, user } = useAuth();
@@ -38,8 +38,6 @@ function PrivateRoute({ children, role }) {
 }
 
 function App() {
-  const [user, setUser] = useState(null);
-
   return (
     <ThemeProvider>
       <BrowserRouter>
@@ -47,26 +45,23 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-
-            <Route
-              path="/register"
-              element={<Registration setUser={setUser} />}
-            />
+            <Route path="/register" element={<Registration />} />
 
             {/* Student */}
             <Route
               path="/"
               element={
                 <PrivateRoute role="student">
-                  <Layout user={user} />
+                  <Layout />
                 </PrivateRoute>
               }
             >
-              <Route index element={<Home user={user} />} />
-              <Route path="dashboard" element={<Dashboard user={user} />} />
+              <Route index element={<Home />} />
+              <Route path="dashboard" element={<Dashboard />} />
               <Route path="assignments" element={<Assignments />} />
               <Route path="calendar" element={<Calendar />} />
               <Route path="exams-results" element={<ExamsResults />} />
+              <Route path="courses" element={<Courses />} />
               <Route path="private-files" element={<PrivateFiles />} />
               <Route path="library" element={<Library />} />
             </Route>
@@ -76,25 +71,22 @@ function App() {
               path="/admin"
               element={
                 <PrivateRoute role="admin">
-                  <AdminLayout user={user} />
+                  <AdminLayout />
                 </PrivateRoute>
               }
             >
-              <Route index element={<AdminDashboard user={user} />} />
+              <Route index element={<AdminDashboard />} />
               <Route
                 path="/admin/usermanagement"
                 element={<UserManagement />}
               />
               <Route
                 path="/admin/coursemanagement"
-                element={<CourseManagement />}
+                element={<Courses />}
               />
               <Route path="/admin/payments" element={<Payments />} />
               <Route path="/admin/announcements" element={<Announcements />} />
-              <Route
-                path="/admin/exams-results"
-                element={<AdminExamResults />}
-              />
+              <Route path="/admin/exams-results" element={<ExamResults />} />
               <Route path="/admin/resources" element={<Resources />} />
             </Route>
 
@@ -103,26 +95,23 @@ function App() {
               path="/lecturer"
               element={
                 <PrivateRoute role="lecturer">
-                  <LecturerLayout user={user} />
+                  <LecturerLayout />
                 </PrivateRoute>
               }
             >
-              <Route index element={<LecturerHome user={user} />} />
+              <Route index element={<LecturerHome />} />
               <Route
                 path="/lecturer/dashboard"
-                element={<LecturerDashboard user={user} />}
+                element={<LecturerDashboard />}
               />
               <Route path="/lecturer/assignments" element={<Assignments />} />
               <Route path="/lecturer/calendar" element={<Calendar />} />
-              <Route
-                path="/lecturer/exams-results"
-                element={<LecturerExamResults />}
-              />
+              <Route path="/lecturer/exams-results" element={<ExamResults />} />
               <Route
                 path="/lecturer/private-files"
                 element={<PrivateFiles />}
               />
-              <Route path="/lecturer/library" element={<Library />} />
+              <Route path="/lecturer/library" element={<LecturerLibrary />} />
             </Route>
           </Routes>
         </AuthProvider>

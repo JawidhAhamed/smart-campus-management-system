@@ -12,20 +12,20 @@ export const Cards = [
   {
     id: 2,
     icon: "👨‍🏫", // Replace with an actual image if needed
-    count: 284,
-    title: "Total Teachers",
-    active: 254,
-    inactive: 30,
+    count: 47,
+    title: "Total Lecturers",
+    active: 34,
+    inactive: 13,
     percentage: "1.2%",
     color: "bg-blue-500",
   },
   {
     id: 3,
     icon: "👥", // Replace with an actual image if needed
-    count: 162,
+    count: 102,
     title: "Total Staff",
-    active: 161,
-    inactive: 2,
+    active: 90,
+    inactive: 12,
     percentage: "1.2%",
     color: "bg-yellow-500",
   },
@@ -33,7 +33,7 @@ export const Cards = [
     id: 4,
     icon: "📚", // Replace with an actual image if needed
     count: 82,
-    title: "Total Subjects",
+    title: "Total Modules",
     active: 81,
     inactive: 1,
     percentage: "1.2%",
